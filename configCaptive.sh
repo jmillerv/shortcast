@@ -6,7 +6,7 @@
 apt update
 apt install hostapd
 
-# we made need this
+# we may need this
 # wget http://d.dropbox.com/u/1663660/hostapd/hostapd.zip
 # unzip hostapd.zip
 # cp hosapd /usr/sbin/hostapd
@@ -14,8 +14,7 @@ apt install hostapd
 
 # modify hosts file for wifi usage
 echo "interface=wlan0" | tee -a /etc/hostapd/hostapd.conf > /dev/null
-# we may not need the driver line
-echo "driver=rt187xdrv" | tee -a /etc/hostapd/hostapd.conf > /dev/null
+echo "driver=rt187xdrv" | tee -a /etc/hostapd/hostapd.conf > /dev/null # we may not need the driver line
 # TODO the wifi should be a variable that seeks user input
 echo "ssid=Ceasar Chavez Park Wifi" | tee -a /etc/hostapd/hostapd.conf > /dev/null
 # TODO look up modes to understand this
@@ -34,8 +33,10 @@ echo "exit 0" | tee -a /etc/rc.local > /dev/null
 # install DHCP server
 apt install isc-dhcp-server
 
-# remove comment to activate
-
+# Edit DHCP server configuration
+AuthA="#authoritative"
+AuthB="authoritative"
+sed -i "s/$AuthA/$AuthB/g" /etc/dhcp/dhcpd.conf
 echo "subnet 10.0.10.0 netmask 255.255.255.0 {
             range 10.0.10.2 10.0.10.254
             option domain-name neighborhoodhistory.com
@@ -53,7 +54,9 @@ echo "subnet 10.0.10.0 netmask 255.255.255.0 {
 
 # Enable ip forwarding
 # remove comment from /etc/sysctl.conf
-# net.ipv4.ip_forward=1
+NetA="#net.ipv4.ip_forward=1"
+NetB="net.ipv4.ip_forward=1"
+sed -i "s/$NetA/$NetB/g" /etc/systl.conf
 
 # Network address translation
 iptable -t nat -A POSTROUTING -o etho0 -j MASQUERADE
@@ -65,7 +68,7 @@ apt install ipstables-persistent
 wget https://github.com/nodogsplash/nodogsplash/archive/master.zip
 unzip master.zip
 rm master.zip
-cd nodogsplash-master
+cd nodogsplash-master || exit
 make
 make install
 
@@ -75,7 +78,9 @@ echo "GatewayAddress 10.0.10.1" | tee -a /etc/nodogsplash/nodogsplash.conf > /de
 echo "MaxClients 150" | tee -a /etc/nodogsplash/nodogsplash.conf > /dev/null
 echo "ClientIdleTimeout 480" | tee -a /etc/nodogsplash/nodogsplash.conf > /dev/null
 
-# Edit webpage /etc/nodogsplash/htdocs/splash.html
+# TODO  Edit webpage /etc/nodogsplash/htdocs/splash.html
+# https://nodogsplashdocs.readthedocs.io/en/stable/splash.html
+# If it's possible execute the Hugo binary that we created in place of a splash page
 
 # add cronjob to monitor who connects
 echo "*/5 * * * * ndsctl status >> /root/results5.txt" >> mycron
@@ -91,9 +96,11 @@ echo "zone \".\" {
       };" | tee -a /etc/bind/named.conf.local > /dev/null
 
 # edit /etc/bind/named.conf.options
-# TODO change "dir=/etc/namedb" to dir = /etc/bind
-# TODO uncomment next line
-# touch /etc/bind/db.catchall
+#hopefully variables work in sed
+STR1="dir=/etc/namedb"
+STR2="/etc/bind"
+sed -i "s/$STR1/$STR2/g" /etc/bind/named.conf.options
+ touch /etc/bind/db.catchall
 echo "$TTL    604800
       @       IN    SOA     .  root.localhost. (
                               1         ; Serial
