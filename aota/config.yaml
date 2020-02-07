@@ -1,0 +1,11 @@
+
+baseURL: /
+title: 'A History of Caesar Chavez'
+defaultContentLanguage: en
+languages:
+  en:
+    lang: en
+    languageName: English
+    weight: 0
+MetaDataFormat: 'yaml'
+theme: 'history'
