@@ -1,7 +1,6 @@
 ---
 title: "History of Caesar Chavez Park"
 date: 2020-02-06T22:12:04-07:00
-draft: "true"
 Tags:
     - History
 Categories:
