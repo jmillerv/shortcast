@@ -1,9 +1,11 @@
 ---
 title: "History of Caesar Chavez Park"
 date: 2020-02-06T22:12:04-07:00
-draft: true
-Tags: ["history"]
-Categories: ["Tennyson"]
+draft: "true"
+Tags:
+    - History
+Categories:
+    - Tennyson
 ---
 
 This place you're sitting. Have you ever thought
