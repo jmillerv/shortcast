@@ -6,4 +6,4 @@ date: "2018-02-11"
 
 ## about me
 
-Hi there, you just reached my blog.
+Formerly Alcott Park, Cesar Chavez park was renamed in 20--
