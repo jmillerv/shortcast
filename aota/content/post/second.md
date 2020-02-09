@@ -1,5 +1,5 @@
 ---
-title: "Biography of Caesar Chavez"
+title: "Biography of Cesar Chavez"
 date: 2020-02-06T22:14:16-07:00
 Description: ""
 Tags: []
@@ -7,4 +7,4 @@ Categories: []
 
 ---
 
-Caesar Chavez was a labor organizer in the west. 
+Cesar Chavez was a labor organizer in the west. 
