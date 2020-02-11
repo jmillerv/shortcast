@@ -2,7 +2,7 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">more_vert</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 {{ range .Data.Pages }}
                     {{ if eq .Type "page" }}
@@ -13,3 +13,14 @@
         </div>
     </nav>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.sidenav-trigger');
+        var instances = M.Dropdown.init(elems, options);
+    });
+
+    // Or with jQuery
+
+    $('.dropdown-trigger').dropdown();
+</script>

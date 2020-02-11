@@ -1,5 +1,5 @@
 
-baseURL: /
+baseurl: "/"
 title: 'A History of Cesar Chavez'
 defaultContentLanguage: en
 languages:
@@ -7,5 +7,6 @@ languages:
     lang: en
     languageName: English
     weight: 0
+staticDir: static
 MetaDataFormat: 'yaml'
 theme: 'history'
