@@ -1,9 +1,8 @@
 <h1 class="center-align">Welcome to Cesar Chavez Park</h1>
-<div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper">
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">more_vert</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <a href="#" data-target="mobile-menu" class="sidenav-trigger"><i class="material-icons">more_vert</i></a>
+            <ul class="right hide-on-med-and-down">
                 {{ range .Data.Pages }}
                     {{ if eq .Type "page" }}
                         <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
@@ -12,15 +11,11 @@
             </ul>
         </div>
     </nav>
-</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav-trigger');
-        var instances = M.Dropdown.init(elems, options);
-    });
-
-    // Or with jQuery
-
-    $('.dropdown-trigger').dropdown();
-</script>
+    <ul class="sidenav" id="mobile-menu">
+        {{ range .Data.Pages }}
+            {{ if eq .Type "page" }}
+                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+            {{ end }}
+        {{ end }}
+    </ul>
