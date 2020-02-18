@@ -5,13 +5,15 @@
 </head>
 <body>
 {{ partial "header.html" . }}
-{{ range first 10 .Data.Pages }}
-    {{ if eq .Type "post"}}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-    {{ end }}
-{{ end }}
 
-
+{{ partial "intro.html"}}
+<div class="center-align">
+        <ul>
+                {{ range first 5 (where site.RegularPages "Type" "in" site.Params.mainSections).ByTitle  }}
+                    <h5><a href={{ .Permalink }}>{{ .Title }}</a></h5>
+                {{ end }}
+        </ul>
+</div>
 {{ partial "footer.html" . }}
 </body>
 </html>

@@ -1,8 +1,8 @@
 ---
-title: "Biography of Cesar Chavez"
+title: "Timeline of Cesar Chavez's Life"
 date: 2020-02-06T22:14:16-07:00
 Description: ""
-Tags: []
+Tags: ['cesar-chavez']
 Categories: []
 
 ---
