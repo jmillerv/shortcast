@@ -2,6 +2,10 @@
 <html>
 <head>
         {{ partial "head.html" . }}
+{{/*    TODO: find a way to get this to work inside o*/}}
+    <style>
+        a { color: #ffd600; } /* CSS link color */
+    </style>
 </head>
 <body>
 {{ partial "header.html" . }}
@@ -10,7 +14,7 @@
 <div class="center-align">
         <ul>
                 {{ range first 5 (where site.RegularPages "Type" "in" site.Params.mainSections).ByTitle  }}
-                    <h5><a href={{ .Permalink }}>{{ .Title }}</a></h5>
+                    <h5 class="alt-a-yellow"><a  href={{ .Permalink }}>{{ .Title }}</a></h5>
                 {{ end }}
         </ul>
 </div>
