@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>cesar-chavez on A History of Cesar Chavez</title>
+    <link>/tags/cesar-chavez/</link>
+    <description>Recent content in cesar-chavez on A History of Cesar Chavez</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 17 Feb 2020 20:19:36 -0700</lastBuildDate>
+    
+	<atom:link href="/tags/cesar-chavez/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Biography of Cesar Chavez</title>
+      <link>/post/bio/</link>
+      <pubDate>Mon, 17 Feb 2020 20:19:36 -0700</pubDate>
+      
+      <guid>/post/bio/</guid>
+      <description>Cesar Chavez, in full Cesar Estrada Chavez, (born March 31, 1927, Yuma, Arizona, U.S.—died April 23, 1993, San Luis, Arizona), organizer of migrant American farmworkers and a cofounder with Dolores Huerta of the National Farm Workers Association (NFWA) in 1962.
+Chavez, who was a farm labourer himself, grew up in a migrant farm-labour family of Mexican American descent. He lived in a succession of migrant camps and attended school sporadically. After two years in the U.</description>
+    </item>
+    
+    <item>
+      <title>Timeline of Cesar Chavez&#39;s Life</title>
+      <link>/post/timeline/</link>
+      <pubDate>Thu, 06 Feb 2020 22:14:16 -0700</pubDate>
+      
+      <guid>/post/timeline/</guid>
+      <description>Cesar Chavez was a labor organizer in the west.</description>
+    </item>
+    
+  </channel>
+</rss>
