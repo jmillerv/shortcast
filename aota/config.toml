@@ -1,0 +1,20 @@
+baseURL = "localhost:1313"
+languageCode = "en-us"
+title = "Cesar Chavez Park"
+theme = "hugo-theme-yuki"
+
+# Copyright notice. This will display on the footer.
+copyright = ""
+paginate = 10
+
+# Theme config
+[params]
+
+  # The content you want to be listed on list pages.
+  mainSections = ["post"]
+
+  # The path to your images
+  favicon = "images/logo.png"
+  logo = "images/UFW_logo.png"
+  avatar = ""
+  displayImg = "images/cesarchavezpark.png"
