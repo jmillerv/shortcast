@@ -1,10 +1,13 @@
-# Art Over the Airwaves 
+# Shortcast
 
 ## Goals of the project
 
-## Tools 
-The bulk of AoTA is built on top of Hugo. If you want to learn more about this project
-I suggest starting there. 
-https://gohugo.io/
+## Technology Stack  
+The content is served using Hugo
+
+The front-end CMS is courtesy the Hokus library. 
+
+The scripts install and captive portal configuration scripts were written by me uisng Golang. 
+
 
 
