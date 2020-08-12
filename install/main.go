@@ -11,7 +11,7 @@ const homeDir = "/home/pi" // TODO add if statement to get OS environment. If !p
 // instead of a constant this can be set as a default string in the main that uses the os.GetEnv("HOME") to get the home dir.
 
 
-// Manage your deps, or running package managers.
+// installDeps runs updates and installs required programs
 func installDeps() error {
 	fmt.Println("Installing Dependencies...")
 	fmt.Println("running apt update ")
@@ -25,15 +25,22 @@ func installDeps() error {
 
 //TODO use packr to bundle the appImage into the binary.
 
-// move hokus app image to the user's desktop
+// moveHokus places the hokus app image to the user's desktop
 func moveHokus() error {
 	fmt.Println("moving hokus app image")
-	os.Chdir(homeDir)
+	err := os.Chdir(homeDir)
+	if err != nil {
+		log.Println("unable to change directory to", homeDir)
+	}
 	oldLocation := "hokus-cms_rpi.AppImage"
 	newLocation := homeDir+"/Desktop/hokus-cms_rpi.AppImage"
-	os.Rename(oldLocation, newLocation)
-	//cmd := exec.Command("cp", "hokus-cms_linux.AppImage ~/Desktop/hokus.AppImage") // Linux amd64
-	cmd := exec.Command("chmod", "+x", homeDir+"/Desktop/hokus-cms_rpi.AppImage") // arm7 architecture
+	err = os.Rename(oldLocation, newLocation)
+	if err != nil {
+		log.Println("unable rename", oldLocation, "to ", newLocation)
+	}
+	// TODO add switch for architecture
+	cmd := exec.Command("cp", "hokus-cms_linux.AppImage ~/Desktop/hokus.AppImage") // Linux amd64
+	//cmd := exec.Command("chmod", "+x", homeDir+"/Desktop/hokus-cms_rpi.AppImage") // arm7 architecture
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
@@ -41,23 +48,30 @@ func moveHokus() error {
 
 func setupHugo() error{
 	fmt.Println("setting up hugo")
-	_ = os.Chdir(homeDir)
-	cmd := exec.Command("hugo", "new", "site", "aota")
-	err := cmd.Run()
+	err := os.Chdir(homeDir)
+	if err != nil {
+		log.Println("unable to change directory to", homeDir)
+	}
+	cmd := exec.Command("hugo", "new", "site", "shortcast")
+	err = cmd.Run()
 	if err != nil {
 		log.Fatal("could not create new hugo site ", err)
 	}
-	_ = os.Chdir(homeDir+"/aota/themes")
+	err = os.Chdir(homeDir+"/shortcast/themes") // TODO less of this filepath should be hardcoded.
+	if err != nil {
+		log.Println("unable to change directory to "+ homeDir+"/shortcast/themes")
+	}
 	cmd = exec.Command("git","clone", "https://github.com/iCyris/hugo-theme-yuki")
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
 }
 
-// Clean up
+// clean deletes unneeded temp files TODO implement
 func clean() {
-	fmt.Println("Cleaning...")
-	_ = os.RemoveAll("Aota")
+	panic("function not implemented")
+	//fmt.Println("Cleaning...")
+	//_ = os.RemoveAll("shortcast")
 }
 
 
@@ -75,7 +89,10 @@ func main() {
 		log.Fatal("hugo setup failed", err)
 	}
 	fmt.Println("running hugo")
-	_ = os.Chdir(homeDir+"/aota")
+	err = os.Chdir(homeDir+"/shortcast")
+	if err != nil {
+		log.Println("unable to change directory to "+ homeDir+"/shortcast")
+	}
 	cmd := exec.Command("hugo", "server", "-t", "hugo-theme-yuki")
 	err = cmd.Run()
 	if err != nil {

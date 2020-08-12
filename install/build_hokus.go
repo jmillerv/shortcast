@@ -6,6 +6,8 @@ import (
 	"os/exec"
 )
 
+// This script clones and builds Hokus based on the environment.
+
 func cloneHokus() error {
 	log.Println("cloning hokus")
 	_ = os.Chdir(homeDir)
