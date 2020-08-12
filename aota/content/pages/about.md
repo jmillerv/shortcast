@@ -5,9 +5,9 @@ draft: false
 menu: "nav"
 ---
 
-# Art Over the Airwaves
+# Shortcast
 
-Art Over the Airwaves (AOtA) is the working title for this project. Initially, conceived as a way to make hidden
+Shortcast is the working title for this project. Initially, conceived as a way to make hidden
 hyper-local art digital art galleries. The scope has since expanded to include hyper-local static websites more generally. 
 The present usages this is imagined for are galleries, activism, and local history that center the narratives of the people
 living in the community instead of what one may find via a cursory online search. 

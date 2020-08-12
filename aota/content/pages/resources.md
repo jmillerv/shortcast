@@ -5,5 +5,7 @@ draft: false
 menu: "nav"
 ---
 
-This page will contain links for some of the historical resources I used some information on land acknowledgements 
-and hopefully a link to a tutorial to create your own version of this. 
+Here we want to have resources like a bibliography and a downloadable PDF tutorial. 
+
+
+[Tool for discovering American Indian and First Nations land](https://native-land.ca/)
