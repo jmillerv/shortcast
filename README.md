@@ -9,14 +9,12 @@
 ## Technology Stack  
 
 ### Prototype Stack
-The content is served using Hugo
+- The content is served using Hugo
+- The front-end CMS is courtesy the Hokus library. 
+- The scripts install and captive portal configuration scripts were written by me uisng Golang. 
 
-The front-end CMS is courtesy the Hokus library. 
-
-The scripts install and captive portal configuration scripts were written by me uisng Golang. 
-
-### Final Product Static 
-UI Framework is Fyne.io for configuration and setup
-Captive portal is configured through bash scripts that are embedded in the binary
-Lightweight static site generator is small enough to be included in the binary
+### Final Product Stack 
+- UI Framework is Fyne.io for configuration and setup
+- Captive portal is configured through bash scripts that are embedded in the binary
+- Lightweight static site generator is small enough to be included in the binary
 
