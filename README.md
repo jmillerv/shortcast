@@ -4,7 +4,7 @@
 - [ ] Provide an user interface to configure a captive portal
 - [ ] Provide an option for users to add content through a GUI 
 - [ ] Lightweight static site generator bundled into the binary
-- [ ] compiles down to a single binary for usage on ARM systems
+- [ ] Compiles down to a single binary for usage on ARM based single board computers
 
 ## Technology Stack  
 
