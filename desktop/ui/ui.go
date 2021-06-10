@@ -15,22 +15,24 @@ const preferenceCurrentPanel = "currentPanel"
 
 var topWindow fyne.Window
 
-
 func Render() {
-	a := app.NewWithID("shortcast.demo")
+	a := app.NewWithID("shortcast.app")
 	w := a.NewWindow("Shortcast")
+	topWindow = w
+
+	w.SetMaster()
+
 	content := container.NewMax()
 	title := widget.NewLabel("Component name")
 	intro := widget.NewLabel("Welcome to Shortcast")
 	intro.Wrapping = fyne.TextWrapWord
-
 	setPanel := func(p panels.Panel) {
 		if fyne.CurrentDevice().IsMobile() {
 			child := a.NewWindow(p.Title)
 			topWindow = child
 			child.SetContent(p.View(topWindow))
 			child.Show()
-			child.SetOnClosed(func(){
+			child.SetOnClosed(func() {
 				topWindow = w
 			})
 			return
@@ -43,9 +45,8 @@ func Render() {
 		content.Refresh()
 	}
 
-	panel := container.NewBorder(
-		container.NewVBox(title, widget.NewSeparator(), intro), nil, nil, nil, content)
-	if fyne.CurrentDevice().IsMobile(){
+	panel := container.NewBorder(container.NewVBox(title, widget.NewSeparator(), intro), nil, nil, nil, content)
+	if fyne.CurrentDevice().IsMobile() {
 		w.SetContent(createNav(setPanel, false))
 	} else {
 		split := container.NewHSplit(createNav(setPanel, true), panel)
@@ -53,24 +54,25 @@ func Render() {
 		w.SetContent(split)
 	}
 
-	w.Resize(fyne.Size{Width:  600, Height: 400})
+	w.Resize(fyne.Size{Width: 640, Height: 460})
 	w.ShowAndRun()
 }
 
 func createNav(setPanel func(panel panels.Panel), loadPrevious bool) fyne.CanvasObject {
 	a := fyne.CurrentApp()
+
 	tree := &widget.Tree{
-		ChildUIDs:      func(uid string) []string{
+		ChildUIDs: func(uid string) []string {
 			return panels.PanelIndex[uid]
 		},
-		CreateNode:     func(branch bool) fyne.CanvasObject {
+		CreateNode: func(branch bool) fyne.CanvasObject {
 			return widget.NewLabel("Collection Widgets")
 		},
-		IsBranch:       func(uid string) bool {
+		IsBranch: func(uid string) bool {
 			children, ok := panels.PanelIndex[uid]
 			return ok && len(children) > 0
 		},
-		UpdateNode:     func(uid string, branch bool, obj fyne.CanvasObject){
+		UpdateNode: func(uid string, branch bool, obj fyne.CanvasObject) {
 			p, ok := panels.Panels[uid]
 			if !ok {
 				fyne.LogError(fmt.Sprintf("Missing panel %s", uid), nil)
