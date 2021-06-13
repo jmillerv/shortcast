@@ -18,7 +18,7 @@ const (
 )
 
 var topWindow fyne.Window
-var themeButton = widget.NewButton("theme", changeTheme)
+var themeButton = widget.NewButtonWithIcon("theme", theme.ColorPaletteIcon(),changeTheme)
 var themeBool = binding.NewBool()
 
 func Render() {
