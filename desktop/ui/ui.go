@@ -5,19 +5,29 @@ import (
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
 	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/data/binding"
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/jmillerv/shortcast/desktop/panels"
+	"log"
 )
 
-const preferenceCurrentPanel = "currentPanel"
+const (
+	preferenceCurrentPanel = "currentPanel"
+)
 
 var topWindow fyne.Window
+var themeButton = widget.NewButton("theme", changeTheme)
+var themeBool = binding.NewBool()
 
 func Render() {
 	a := app.NewWithID("shortcast.app")
 	w := a.NewWindow("Shortcast")
+	err := themeBool.Set(false)
+	if err != nil {
+		log.Fatal("error setting theme bool")
+	}
 	topWindow = w
 
 	w.SetMaster()
@@ -60,7 +70,7 @@ func Render() {
 
 func createNav(setPanel func(panel panels.Panel), loadPrevious bool) fyne.CanvasObject {
 	a := fyne.CurrentApp()
-
+	// TODO add bool to remove getting started for menu
 	tree := &widget.Tree{
 		ChildUIDs: func(uid string) []string {
 			return panels.PanelIndex[uid]
@@ -92,13 +102,23 @@ func createNav(setPanel func(panel panels.Panel), loadPrevious bool) fyne.Canvas
 		tree.Select(currentPref)
 	}
 
-	themes := container.New(layout.NewGridLayout(2),
-		widget.NewButton("Dark", func() {
-			a.Settings().SetTheme(theme.DarkTheme())
-		}),
-		widget.NewButton("Light", func() {
-			a.Settings().SetTheme(theme.LightTheme())
-		}),
+	themes := container.New(layout.NewGridLayout(1),
+		themeButton,
 	)
 	return container.NewBorder(nil, themes, nil, nil, tree)
+}
+
+func changeTheme() {
+	a := fyne.CurrentApp()
+	b, _ := themeBool.Get()
+	if !b {
+		a.Settings().SetTheme(theme.LightTheme())
+		_ = themeBool.Set(true)
+		return
+	}
+	if b {
+		a.Settings().SetTheme(theme.DarkTheme())
+		_ = themeBool.Set(false)
+		return
+	}
 }
