@@ -1,0 +1,10 @@
+home_directory = "/home/pi" # this is a default but should be configurable
+shortcast_directory = "home/pi/shortcast" # default, configurable
+themes = shortcast_directory + "/themes"
+wifi name
+password bool
+password
+
+config.yaml will contain
+name of the website
+preferred theme
