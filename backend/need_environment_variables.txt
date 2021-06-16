@@ -7,4 +7,4 @@ password
 
 config.yaml will contain
 name of the website
-preferred theme
+preferred theme url

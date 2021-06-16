@@ -1,4 +1,4 @@
-package install
+package backend
 
 import (
 	"fmt"
@@ -6,57 +6,34 @@ import (
 	"os/exec"
 )
 
-const homeDir = "/home/pi" // TODO add if statement to get OS environment. If !pi then other conventions (win, linux, mac)
-// instead of a constant this can be set as a default string in the main that uses the os.GetEnv("HOME") to get the home dir.
-
-// Dependencies runs updates and installs required programs
-func Dependencies() error {
+// InstallDependencies runs updates and installs required programs
+func InstallDependencies() error {
 	fmt.Println("Installing Dependencies...")
 	fmt.Println("running apt update ")
 	cmd := exec.Command("apt-get", "update")
 	cmd = exec.Command("apt-get","upgrade", "-y")
-	cmd = exec.Command("apt-get", "install", "nodejs", "npm", "hugo","go", "git", "-y")
+	cmd = exec.Command("apt-get", "install", "go", "git", "hugo", "-y") // We may need nodejs and npm
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr
 	return cmd.Run()
 }
 
-func DependenciesWithoutInternet() error {
-	return nil
+// InstallDependenciesWithoutInternet uses the needed embedded binaries these may not be as current as doing it over wifi
+func InstallDependenciesWithoutInternet() error {
+	panic("implement me")
 }
 
-
-
-
-// clean deletes unneeded temp files TODO implement
-func clean() {
-	panic("function not implemented")
-	//fmt.Println("Cleaning...")
-	//_ = os.RemoveAll("shortcast")
+// backupFlatFiles stores a local copy of all of the files that are modified by InstallCaptivePortal so that we can
+// restore them just in case.
+func backupFlatFiles() error {
+	panic("implement me")
 }
 
-// DEPRECATED
-//func main() {
-//	err := Dependencies()
-//	if err != nil {
-//		log.Fatal("failed to install dependencies ", err)
-//	}
-//	err = moveHokus()
-//	if err != nil {
-//		log.Fatal("Unable to move hokus app image ", err)
-//	}
-//	err = SetupHugo()
-//	if err != nil {
-//		log.Fatal("hugo setup failed", err)
-//	}
-//	fmt.Println("running hugo")
-//	err = os.Chdir(homeDir+"/shortcast")
-//	if err != nil {
-//		log.Println("unable to change directory to "+ homeDir+"/shortcast")
-//	}
-//	cmd := exec.Command("hugo", "server", "-t", "hugo-theme-yuki")
-//	err = cmd.Run()
-//	if err != nil {
-//		log.Fatal("failed to run hugo ", err)
-//	}
-//}
+func InstallCaptivePortal() error {
+	// run configCaptive.sh
+	panic("implement me")
+}
+
+func RestoreFlatFiles() error {
+	panic("implement me")
+}
