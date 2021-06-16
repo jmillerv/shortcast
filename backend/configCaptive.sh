@@ -2,6 +2,7 @@
 
 # Add general warning about how this isn't secure to plug into a network
 # TODO look up how to prevent internal network browsing in the hostapd.conf file
+# Credit original author of the tutorial
 
 apt update
 apt install hostapd
@@ -15,8 +16,7 @@ apt install hostapd
 # modify hosts file for wifi usage
 echo "interface=wlan0" | tee -a /etc/hostapd/hostapd.conf > /dev/null
 echo "driver=rt187xdrv" | tee -a /etc/hostapd/hostapd.conf > /dev/null # we may not need the driver line
-# TODO the wifi should be a variable that seeks user input
-echo "ssid=Ceasar Chavez Park Wifi" | tee -a /etc/hostapd/hostapd.conf > /dev/null
+echo "ssid=$WIFI_NAME" | tee -a /etc/hostapd/hostapd.conf > /dev/null
 # TODO look up modes to understand this
 echo "hw_mode=g" | tee -a /etc/hostapd/hostapd.conf > /dev/null
 # TODO look up channels for optimal choice
@@ -45,7 +45,7 @@ echo "subnet 10.0.10.0 netmask 255.255.255.0 {
             interface wlan0
       }" | tee -a /etc/dhcp/dhcpd.conf > /dev/null
 
-# TODO search for a specifc spot to place this
+# TODO search for a specific spot to place this
 # /etc/network/interfaces
 # change ifcace wlan0 inet manual to iface wlan0 inet static
 # add following below
@@ -85,8 +85,8 @@ echo "ClientIdleTimeout 480" | tee -a /etc/nodogsplash/nodogsplash.conf > /dev/n
 # add cronjob to monitor who connects
 echo "*/5 * * * * ndsctl status >> /root/results5.txt" >> mycron
 echo "*/15 * * * * ndsctl status >> /root/results15.txt" >> mycron
-crontab mycron
-rm mycron
+crontab mycron # add cron to crontab
+rm mycron # remove text file
 
 # configure as captive portal
 apt install bind9
