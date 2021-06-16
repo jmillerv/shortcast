@@ -6,6 +6,7 @@ import (
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/data/binding"
 	"fyne.io/fyne/v2/dialog"
+	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"os"
@@ -50,30 +51,32 @@ func configScreen(win fyne.Window) fyne.CanvasObject {
 		fmt.Println("Struct:\n", formData)
 	}
 	infoButtons := getInfoButtons(win)
-	return container.NewBorder(nil, nil, nil, nil, container.NewHSplit(form, infoButtons))
+	installButton := widget.NewButton("install", func(){
+		fmt.Println("installing shortcast")
+	})
+	return container.NewBorder(nil, installButton, nil, nil, container.New(layout.NewFormLayout(),infoButtons, form))
 
 }
 
 func getInfoButtons(win fyne.Window) fyne.CanvasObject {
+	homeDirInfo := widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
+		dialog.ShowInformation("Home Directory", "This is your device's home folder", win)
+	})
+	shortCastDirInfo := widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
+		dialog.ShowInformation("Shortcast Directory", "This is where shortcast related files will live on the pi", win)
+	})
+	wifiNameInfo := widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
+		dialog.ShowInformation("WiFi Name", "This is the connection name that will be visible to users", win)
+	})
+	passwordInfo := widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
+		dialog.ShowInformation("Password", "This is where you set a password", win)
+	})
+	passwordRequiredInfo := widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
+		dialog.ShowInformation("Password Required", "Click if you want to enable who can access your Shortcast", win)
+	})
 	return container.NewVBox(
-		container.NewGridWithRows(5,
-			widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
-				dialog.ShowInformation("Home Directory", "This is your device's home folder", win)
-			}),
-			widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
-				dialog.ShowInformation("Shortcast Directory", "This is where shortcast related files will live on the pi", win)
-			}),
-			widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
-				dialog.ShowInformation("WiFi Name", "This is the connection name that will be visible to users", win)
-			}),
-			widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
-				dialog.ShowInformation("Password", "This is where you set a password", win)
-			}),
-			widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
-				dialog.ShowInformation("Password Required", "Click if you want to enable who can access your Shortcast", win)
-			}),
-			),
-		)
+		container.NewGridWithRows(5, homeDirInfo,shortCastDirInfo, wifiNameInfo, passwordInfo, passwordRequiredInfo),
+	)
 }
 
 func newFormWithData(data binding.DataMap) *widget.Form {
