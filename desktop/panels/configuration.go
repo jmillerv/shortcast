@@ -51,10 +51,13 @@ func configScreen(win fyne.Window) fyne.CanvasObject {
 		fmt.Println("Struct:\n", formData)
 	}
 	infoButtons := getInfoButtons(win)
-	installButton := widget.NewButton("install", func(){
+	installButton := widget.NewButtonWithIcon("Install", theme.DownloadIcon(), func(){
 		fmt.Println("installing shortcast")
 	})
-	return container.NewBorder(nil, installButton, nil, nil, container.New(layout.NewFormLayout(),infoButtons, form))
+	uninstallButton := widget.NewButtonWithIcon("Uninstall", theme.ContentRemoveIcon(), func(){
+		fmt.Println("uninstalling shortcast")
+	})
+	return container.NewBorder(nil, container.NewGridWithColumns(2, uninstallButton, installButton), nil, nil, container.New(layout.NewFormLayout(),infoButtons, form))
 
 }
 
