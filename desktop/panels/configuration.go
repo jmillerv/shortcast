@@ -66,16 +66,16 @@ func getInfoButtons(win fyne.Window) fyne.CanvasObject {
 		dialog.ShowInformation("Home Directory", "This is your device's home folder", win)
 	})
 	shortCastDirInfo := widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
-		dialog.ShowInformation("Shortcast Directory", "This is where shortcast related files will live on the pi", win)
+		dialog.ShowInformation("Shortcast Directory", "This is where Shortcast related files will live on the device.", win)
 	})
 	wifiNameInfo := widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
-		dialog.ShowInformation("WiFi Name", "This is the connection name that will be visible to users", win)
+		dialog.ShowInformation("WiFi Name", "This is the connection name that will be visible to users.", win)
 	})
 	passwordInfo := widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
-		dialog.ShowInformation("Password", "This is where you set a password", win)
+		dialog.ShowInformation("Password", "Changing this value changes the WiFi password.", win)
 	})
 	passwordRequiredInfo := widget.NewButtonWithIcon("", theme.InfoIcon(), func() {
-		dialog.ShowInformation("Password Required", "Click if you want to enable who can access your Shortcast", win)
+		dialog.ShowInformation("Password Required", "Clicking this checkbox enables the password.", win)
 	})
 	return container.NewVBox(
 		container.NewGridWithRows(5, homeDirInfo,shortCastDirInfo, wifiNameInfo, passwordInfo, passwordRequiredInfo),

@@ -5,7 +5,7 @@ import (
 	"fyne.io/fyne/v2/container"
 )
 
-func adminScreen(_ fyne.Window) fyne.CanvasObject {
+func manageScreen(_ fyne.Window) fyne.CanvasObject {
 	return container.NewHBox()
 }
 

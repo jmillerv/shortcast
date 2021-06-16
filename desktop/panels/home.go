@@ -23,7 +23,7 @@ func homeScreen(_ fyne.Window) fyne.CanvasObject {
 			// TODO hyper links won't work because it's not intended to be connected to internet
 			widget.NewHyperlink("about",  parseURL("https://github.com/jmillerv")),
 			widget.NewLabel("-"),
-			widget.NewHyperlink("report issue", parseURL("https://github.com/jmillerv")),
+			widget.NewHyperlink("report issue", parseURL("https://github.com/jmillerv")), // open window
 			widget.NewLabel("-"),
 			widget.NewHyperlink("contribute", parseURL("https:/github.com/jmillerv")),
 		),
