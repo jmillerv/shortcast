@@ -8,7 +8,7 @@ type Panel struct {
 }
 
 var (
-	// Panels defines metada for each panel
+	// Panels defines metadata for each panel
 	Panels = map[string]Panel{
 		"home": {"Shortcast", "", homeScreen},
 		"getting started": {"Getting Started", "Help for a successful experience", gettigStartedScreen},

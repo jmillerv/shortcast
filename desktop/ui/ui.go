@@ -47,7 +47,6 @@ func Render() {
 			})
 			return
 		}
-
 		title.SetText(p.Title)
 		intro.SetText(p.Intro)
 
@@ -70,7 +69,6 @@ func Render() {
 
 func createNav(setPanel func(panel panels.Panel), loadPrevious bool) fyne.CanvasObject {
 	a := fyne.CurrentApp()
-	// TODO add bool to remove getting started for menu
 	tree := &widget.Tree{
 		ChildUIDs: func(uid string) []string {
 			return panels.PanelIndex[uid]
