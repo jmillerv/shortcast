@@ -8,6 +8,13 @@ import (
 
 // InstallDependencies runs updates and installs required programs
 func InstallDependencies() error {
+	if !checkForInternetConnection() {
+		err := InstallDependenciesWithoutInternet()
+		if err != nil {
+			fmt.Println("unable to install dependencies")
+		}
+		return err
+	}
 	fmt.Println("Installing Dependencies...")
 	fmt.Println("running apt update ")
 	cmd := exec.Command("apt-get", "update")
@@ -20,7 +27,12 @@ func InstallDependencies() error {
 
 // InstallDependenciesWithoutInternet uses the needed embedded binaries these may not be as current as doing it over wifi
 func InstallDependenciesWithoutInternet() error {
+	fmt.Println("No internet connection installing from stored binaries")
 	panic("implement me")
+}
+
+func checkForInternetConnection() bool {
+	return true // todo set to false
 }
 
 // backupFlatFiles stores a local copy of all of the files that are modified by InstallCaptivePortal so that we can
