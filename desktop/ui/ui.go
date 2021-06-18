@@ -34,8 +34,6 @@ func Render() {
 
 	content := container.NewMax()
 	title := widget.NewLabel("Component name")
-	intro := widget.NewLabel("Welcome to Shortcast")
-	intro.Wrapping = fyne.TextWrapWord
 	setPanel := func(p panels.Panel) {
 		if fyne.CurrentDevice().IsMobile() {
 			child := a.NewWindow(p.Title)
@@ -48,13 +46,12 @@ func Render() {
 			return
 		}
 		title.SetText(p.Title)
-		intro.SetText(p.Intro)
 
 		content.Objects = []fyne.CanvasObject{p.View(w)}
 		content.Refresh()
 	}
 
-	panel := container.NewBorder(container.NewVBox(title, widget.NewSeparator(), intro), nil, nil, nil, content)
+	panel := container.NewBorder(container.NewVBox(title, widget.NewSeparator()), nil, nil, nil, content)
 	if fyne.CurrentDevice().IsMobile() {
 		w.SetContent(createNav(setPanel, false))
 	} else {
