@@ -6,10 +6,16 @@ import (
 )
 
 const (
-	testString = "HelloWorld"
+	testPascalString = "HelloWorld"
+	testCamelString = "helloTheWorldIsOnFire"
 )
 
-func TestAddSpacesToSentence(t *testing.T) {
-	s := AddSpacesToPascalString(testString)
+func TestAddSpacesToPascalString(t *testing.T) {
+	s := AddSpacesToPascalString(testPascalString)
 	assert.Equal(t, "Hello World", s)
+}
+
+func TestAddSpacesToCamelString(t *testing.T) {
+	s := AddSpacesToCamelString(testCamelString)
+	assert.Equal(t, "hello The World Is On Fire", s)
 }
