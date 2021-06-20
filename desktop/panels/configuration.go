@@ -9,6 +9,7 @@ import (
 	"fyne.io/fyne/v2/layout"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
+	"github.com/jmillerv/shortcast/backend/utils"
 	"os"
 )
 
@@ -90,7 +91,7 @@ func newFormWithData(data binding.DataMap) *widget.Form {
 		if err != nil {
 			items[i] = widget.NewFormItem(k, widget.NewLabel(err.Error()))
 		}
-		items[i] = widget.NewFormItem(k, createBoundItem(data))
+		items[i] = widget.NewFormItem(utils.AddSpacesToPascalString(k), createBoundItem(data))
 	}
 	return widget.NewForm(items...)
 }
