@@ -28,6 +28,7 @@ func createToolBar() fyne.CanvasObject {
 		widget.NewToolbarAction(ItalicIcon(), func() { fmt.Println("italic") }),
 		widget.NewToolbarAction(StrikethroughIcon(), func() { fmt.Println("strikethrough") }),
 		widget.NewToolbarAction(LinkIcon(), func() { fmt.Println("link") }),
+		widget.NewToolbarAction(CodeIcon(), func() { fmt.Println("code") }),
 		widget.NewToolbarAction(TitleIcon(), func() { fmt.Println("header") }),
 		widget.NewToolbarAction(theme.FileImageIcon(), func() { fmt.Println("image") }),
 		widget.NewToolbarAction(ListIcon(), func() { fmt.Println("list") }),
