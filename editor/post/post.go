@@ -22,7 +22,7 @@ func New() *Post {
 		return nil
 	}
 	return new(Post)
-}g
+}
 
 func (p *Post) Save() {
 
