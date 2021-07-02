@@ -27,31 +27,30 @@ func createToolBar() fyne.CanvasObject {
 		widget.NewToolbarAction(TableChartIcon(), format.Table),
 		widget.NewToolbarSeparator(),
 		widget.NewToolbarSpacer(),
-		widget.NewToolbarAction(theme.InfoIcon(), func(){toolBarInfo()}),
+		widget.NewToolbarAction(theme.InfoIcon(), func(){ toolBarInfoScreen()}),
 	)
 	return t
 }
 
-func toolBarInfo() fyne.Window {
+func toolBarInfoScreen() {
+	row := make([]fyne.CanvasObject, len(iconConsts))
 	w := fyne.CurrentApp().NewWindow("Toolbar Info")
-	list := widget.NewList(getToolbarInfoLength, createToolBarRow, updateToolBarRow)
+	for i := range iconConsts {
+		title := widget.NewLabel(IconInfoMap[iconConsts[i]])
+		iconFunc := IconFuncMap[iconConsts[i]]
+		icon := iconFunc()
+		row[i] = container.NewHBox(widget.NewIcon(icon), layout.NewSpacer(), title)
+	}
+	list := widget.NewList(getToolbarInfoLength, func() fyne.CanvasObject {
+		return container.NewGridWithColumns(1, row...)
+	}, updateToolBarRow)
+	w.Resize(fyne.NewSize(240, 480))
 	w.SetContent(list)
-	fmt.Println("returning toolbar info")
-	return w
+	w.Show()
 }
 
 func getToolbarInfoLength() int {
-	return len(IconFuncMap)
-}
-
-func createToolBarRow() fyne.CanvasObject {
-	for _, i := range iconConsts {
-		title := widget.NewLabel(IconInfoMap[i])
-		iconFunc := IconFuncMap[i]
-		icon := iconFunc()
-		return container.NewHBox(widget.NewIcon(icon), layout.NewSpacer(), title)
-	}
-	return widget.NewLabel("")
+	return 1
 }
 
 func updateToolBarRow(id widget.ListItemID, template fyne.CanvasObject) {
