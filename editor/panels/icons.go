@@ -16,21 +16,22 @@ const (
 	IconNameStrikethrough fyne.ThemeIconName = "strikethrough"
 	IconNameTasklist      fyne.ThemeIconName = "tasklist"
 	IconNameTableChart    fyne.ThemeIconName = "table_chart"
-	IconNameTitle         fyne.ThemeIconName = "title"
+	IconNameHeading       fyne.ThemeIconName = "title"
 )
-
+// iconConsts contain all of the constants for the fyne.ThemeIconNames used in the editor toolbar
+// this list is sorted in the order they appear on the toolbar.
 var iconConsts = []fyne.ThemeIconName{
+	IconNameHeading,
 	IconNameBold,
-	IconNameCode,
-	IconNameImage,
 	IconNameItalic,
-	IconNameLink,
+	IconNameStrikethrough,
 	IconNameList,
 	IconNameNumberedList,
-	IconNameStrikethrough,
 	IconNameTasklist,
+	IconNameLink,
+	IconNameCode,
+	IconNameImage,
 	IconNameTableChart,
-	IconNameTitle,
 }
 
 var icons = map[fyne.ThemeIconName]fyne.Resource{
@@ -44,7 +45,7 @@ var icons = map[fyne.ThemeIconName]fyne.Resource{
 	IconNameStrikethrough: theme.NewThemedResource(strikethroughRes),
 	IconNameTasklist:      theme.NewThemedResource(taskListRes),
 	IconNameTableChart:    theme.NewThemedResource(tableChartRes),
-	IconNameTitle:         theme.NewThemedResource(titleRes),
+	IconNameHeading:       theme.NewThemedResource(titleRes),
 }
 
 var IconFuncMap = map[fyne.ThemeIconName]func() fyne.Resource{
@@ -58,7 +59,7 @@ var IconFuncMap = map[fyne.ThemeIconName]func() fyne.Resource{
 	IconNameStrikethrough: StrikethroughIcon,
 	IconNameTasklist:      TaskListIcon,
 	IconNameTableChart:    TableChartIcon,
-	IconNameTitle:         TitleIcon,
+	IconNameHeading:       TitleIcon,
 }
 
 var IconInfoMap = map[fyne.ThemeIconName]string{
@@ -72,7 +73,7 @@ var IconInfoMap = map[fyne.ThemeIconName]string{
 	IconNameStrikethrough: "Strikethrough",
 	IconNameTasklist:      "Task list",
 	IconNameTableChart:    "Table",
-	IconNameTitle:         "Heading",
+	IconNameHeading:       "Heading",
 }
 
 // may need to implement a safeIconLookup function like one that exists in fyne/theme/icons.go
@@ -118,5 +119,5 @@ func TableChartIcon() fyne.Resource {
 }
 
 func TitleIcon() fyne.Resource {
-	return icons[IconNameTitle]
+	return icons[IconNameHeading]
 }
