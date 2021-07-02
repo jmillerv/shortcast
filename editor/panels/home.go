@@ -8,6 +8,7 @@ import (
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 	"github.com/jmillerv/shortcast/editor/format"
+	"github.com/jmillerv/shortcast/editor/post"
 )
 
 func createToolBar() fyne.CanvasObject {
@@ -58,9 +59,10 @@ func updateToolBarRow(id widget.ListItemID, template fyne.CanvasObject) {
 	//label.SetText("Update Post")
 }
 
-func homeScreen(_ fyne.Window) fyne.CanvasObject {
+func HomeScreen(_ fyne.Window) fyne.CanvasObject {
 	newFileButton := widget.NewButtonWithIcon("new", theme.DocumentCreateIcon(), func() {
-		fmt.Println("creating new file")
+		np := post.New()
+		np.Edit()
 	})
 	openFileButton := widget.NewButtonWithIcon("open", theme.FileTextIcon(), func() {
 		fmt.Println("opening file")
