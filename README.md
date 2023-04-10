@@ -1,4 +1,5 @@
 # Shortcast
+Shortcast is software intended to be run on a single board computer that presents a user-friendly way to configure a captive portal and use the onboard wifi radio to distribute content within a fixed geographic location. 
 
 ## Goals of the project
 - [ ] Provide an user interface to configure a captive portal
@@ -18,3 +19,5 @@
 - Captive portal is configured through bash scripts that are embedded in the binary
 - Lightweight static site generator is small enough to be included in the binary
 
+### Status 
+This project is in hiatus but not abandoned 
