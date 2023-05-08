@@ -1,6 +1,9 @@
 # Shortcast
 Shortcast is software intended to be run on a single board computer that presents a user-friendly way to configure a captive portal and use the onboard wifi radio to distribute content within a fixed geographic location. 
 
+## Archived 
+Development moved to [Codeberg](https://codeberg.org/jmillerv/shortcast)
+
 ## Goals of the project
 - [ ] Provide an user interface to configure a captive portal
 - [ ] Provide an option for users to add content through a GUI 
